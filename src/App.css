@@ -559,7 +559,7 @@ html, body {
   padding: 9rem 2rem;
   border-radius: 0px;
   color: #fff;
-  height:700px;
+  height:100%;
   backdrop-filter: blur(2px);          /* increased blur */
 
 }
