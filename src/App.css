@@ -172,12 +172,12 @@ html, body {
 
 .hero-overlay {
   background: rgba(0, 0, 0, 0.7);
-  padding: 9rem 2rem;
   border-radius: 0px;
   color: #fff;
-  height:700px;
   backdrop-filter: blur(2px);          /* increased blur */
-
+  width: 100%;
+  padding-top: 230px;
+  height: 100%;
 }
 
 .hero-overlay h2 {
@@ -553,6 +553,18 @@ html, body {
 
 /* --- Mobile nav behavior --- */
 @media (max-width: 768px) {
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 9rem 2rem;
+  border-radius: 0px;
+  color: #fff;
+  height:700px;
+  backdrop-filter: blur(2px);          /* increased blur */
+
+}
+
+  
   /* Hide links by default on mobile */
   .nav-links {
     display: none;
