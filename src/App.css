@@ -8,7 +8,8 @@ html, body {
   color: #e8e8e8;
 }
 
-/* ========= Navbar ========= */
+/* ========= Navbar 
+========= */
 .navbar {
   position: fixed; top: 0; width: 100%;
   z-index: 1002;
