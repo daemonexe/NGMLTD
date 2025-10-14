@@ -75,12 +75,12 @@ html, body {
   display:flex; align-items:center; justify-content:center; position:relative; text-align:center;
 }
 .hero-overlay {
-  background: rgba(0,0,0,0.72);
+  background: rgba(0, 0, 0, 0.381);
   color:#fff; width:100%; height:100%; padding-top:230px; border-radius:0;
 }
 .hero-overlay h2 { font-size: 2.6rem; margin-bottom: 1rem; }
 .hero-overlay p {
-  font-size:1.1rem; color:#bbb; max-width:650px; margin:0 auto; line-height:1.6;
+  font-size:1.1rem; color:#ffffff; max-width:650px; margin:0 auto; line-height:1.6;
 }
 .cta-btn {
   margin-top:1.8rem; padding:.9rem 1.8rem; border-radius:6px;
