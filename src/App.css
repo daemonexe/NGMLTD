@@ -8,8 +8,7 @@ html, body {
   color: #e8e8e8;
 }
 
-/* ========= Navbar 
-========= */
+/* ========= Navbar ========= */
 .navbar {
   position: fixed; top: 0; width: 100%;
   z-index: 1002;
@@ -78,7 +77,6 @@ html, body {
 .hero-overlay {
   background: rgba(0,0,0,0.72);
   color:#fff; width:100%; height:100%; padding-top:230px; border-radius:0;
-  backdrop-filter: blur(2px);
 }
 .hero-overlay h2 { font-size: 2.6rem; margin-bottom: 1rem; }
 .hero-overlay p {
@@ -140,7 +138,6 @@ html, body {
   display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap:2rem; align-items:start;
   padding-bottom: 50px;
-
 }
 
 .footers-container {
@@ -339,7 +336,9 @@ html, body {
 /* Ensure content doesn't hide under fixed navbar when using Layout */
 main { display: block; }
 
+
 /* Soft shadow on mobile menu panel for nicer reveal */
 @media (max-width: 768px) {
+  .hero-overlay {padding: -10px;}
   .nav-links.active { box-shadow: 0 18px 40px rgba(0,0,0,0.85); }
 }
