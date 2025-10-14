@@ -1,3 +1,4 @@
+// App.jsx
 import { useEffect, useRef, useState } from 'react';
 import {
   Link,
@@ -24,14 +25,23 @@ const projectsData = [
       'https://github.com/daemonexe/daemonexe/blob/main/gal/6.jpg?raw=true',
     short:
       'Lobby reconfiguration, guestroom refresh, corridor lighting, and custom millwork per brand standards.',
-    images: [
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/1.jpg?raw=true',},
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/2.jpg?raw=true', },
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/3.jpg?raw=true', },
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/4.jpg?raw=true', },
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/5.jpg?raw=true', },
-      { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/7.jpg?raw=true', },
-
+    // Each subproject has a tile cover + its own image set
+    subprojects: [
+      {
+        id: 'project-1',
+        name: 'Project 1',
+        cover: 'https://github.com/daemonexe/daemonexe/blob/main/gal/6.jpg?raw=true',
+        images: [
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/1.jpg?raw=true' },
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/2.jpg?raw=true' },
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/3.jpg?raw=true' },
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/4.jpg?raw=true' },
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/5.jpg?raw=true' },
+          { src: 'https://github.com/daemonexe/daemonexe/blob/main/gal/7.jpg?raw=true' },
+        ],
+      },
+      // Add more groups later:
+      // { id: 'project-2', name: 'Project 2', cover: '...', images: [...] }
     ],
   },
   {
@@ -39,7 +49,8 @@ const projectsData = [
     name: 'Marriott',
     brandLogo:
       'https://purepng.com/public/uploads/large/purepng.com-marriott-logologobrand-logoiconslogos-251519940649oyste.png',
-    cover: 'https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1600',
+    cover:
+      'https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1600',
     short: 'FF&E installation, lobby millwork, and corridor refurbishment.',
     comingSoon: true,
   },
@@ -48,7 +59,8 @@ const projectsData = [
     name: 'Hampton by Hilton',
     brandLogo:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hampton_by_Hilton_logo.svg/2560px-Hampton_by_Hilton_logo.svg.png',
-    cover: 'https://images.unsplash.com/photo-1522706604294-57b121d3b36f?q=80&w=1600',
+    cover:
+      'https://images.unsplash.com/photo-1522706604294-57b121d3b36f?q=80&w=1600',
     short: 'Guestroom refresh program with lighting and finishes.',
     comingSoon: true,
   },
@@ -57,8 +69,30 @@ const projectsData = [
     name: 'Holiday Inn',
     brandLogo:
       'https://wp.logos-download.com/wp-content/uploads/2016/05/Holiday_Inn_logo_horizontal.png?dl',
-    cover: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1600',
+    cover:
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1600',
     short: 'Public spaces upgrade: lobby, restaurant, and reception.',
+    comingSoon: true,
+  },
+  // NEW — Coming soon brands
+  {
+    slug: 'comfort-inn',
+    name: 'Comfort Inn',
+    brandLogo:
+      'https://scontent-yyz1-1.xx.fbcdn.net/v/t39.30808-6/358126971_745432627588215_2576220444312063523_n.png?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o1ocM2fEecgQ7kNvwEChWsH&_nc_oc=Adl6jWXdwKTL3_tgcdmK35lwv-JgsTc9T5N_EJ-k_rAYJ5oqRM0622acgLkspEY6xJ8&_nc_zt=23&_nc_ht=scontent-yyz1-1.xx&_nc_gid=uyKxwMQsRGu9vsMTt3H4yA&oh=00_Afc5NvoH9IQ90mndFB0qN84exSck-znb7TKUtgGl_0XDHA&oe=68F3C019', // swap for real logo URL when ready
+    cover:
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600',
+    short: 'Public spaces and guestroom refresh program.',
+    comingSoon: true,
+  },
+  {
+    slug: 'best-western-inn',
+    name: 'Best Western Inn',
+    brandLogo:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Best_Western_logo.svg/851px-Best_Western_logo.svg.png?20190814072338', // swap for real logo URL when ready
+    cover:
+      'https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?q=80&w=1600',
+    short: 'Corridor, lobby, and FF&E upgrades.',
     comingSoon: true,
   },
 ];
@@ -69,14 +103,12 @@ function Navbar() {
   const wrapperRef = useRef(null);
   const location = useLocation();
 
-  // Close menu on Esc
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setMenuOpen(false);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Close when clicking outside
   useEffect(() => {
     const onClickOutside = (e) => {
       if (!wrapperRef.current) return;
@@ -86,17 +118,14 @@ function Navbar() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, [menuOpen]);
 
-  // Restore scroll lock
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
   }, [menuOpen]);
 
-  // Auto close on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // Smooth fade-in for navbar
   return (
     <motion.header
       className="navbar"
@@ -141,7 +170,6 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Backdrop on mobile */}
       {menuOpen && <div className="backdrop" onClick={() => setMenuOpen(false)} />}
     </motion.header>
   );
@@ -149,7 +177,6 @@ function Navbar() {
 
 /* ---------------- Layout with route transitions ---------------- */
 function PageContainer({ children, keyId }) {
-  // Global route fade/slide
   return (
     <motion.main
       key={keyId}
@@ -185,7 +212,6 @@ function Home() {
 
   return (
     <>
-      {/* Hero Section */}
       <section
         className="hero"
         style={{ backgroundImage: `url(${heroImageUrl})` }}
@@ -225,21 +251,18 @@ function Home() {
         </motion.div>
       </section>
 
-      {/* Why Choose Us */}
       <section className="main-content">
         <h3>Why Choose Us?</h3>
         <p>
           At NGM Limited, we bring experience, precision, and care to every hotel renovation.
           From full-scale remodels to simple upgrades, our licensed and insured team handles
           every detail efficiently and safely. We focus on quality craftsmanship, honest pricing,
-          and minimal disruption — ensuring your property looks exceptional, functions flawlessly,
-          and leaves a lasting impression on every guest.
+          and minimal disruption — ensuring your property looks exceptional and functions flawlessly.
         </p>
       </section>
 
       <hr className="hr-slim" />
 
-      {/* What We Do */}
       <section id="whatwedo" className="what-we-do">
         <h3>What We Do</h3>
         <h4>Design, build, and renew — end to end</h4>
@@ -248,11 +271,11 @@ function Home() {
             { title: 'Design', desc: 'Guest-centric interiors that meet brand standards and boost RevPAR.' },
             { title: 'Construction', desc: 'Efficient phasing, tight quality control, and safe, clean worksites.' },
             { title: 'Custom Millwork', desc: 'Casegoods, vanities, and built-ins tailored to your property.' },
-            { title: 'Renovations', desc: 'Room refreshes, corridors, lobbies, restaurants, fitness, and back-of-house.' },
+            { title: 'Renovations', desc: 'Rooms, corridors, lobbies, restaurants, fitness, and BOH.' },
             { title: 'Exterior', desc: 'Façade updates, entries, canopies, paving, and signage coordination.' },
-            { title: 'Outdoor', desc: 'Patios, pools, and landscape features that extend the guest experience.' },
-            { title: 'MEP & Lighting', desc: 'Electrical, plumbing, and lighting upgrades for efficiency and comfort.' },
-            { title: 'Supplementary', desc: 'FF&E installation, painting programs, and brand standard compliance.' }
+            { title: 'Outdoor', desc: 'Patios, pools, and landscape features that extend guest experience.' },
+            { title: 'MEP & Lighting', desc: 'Electrical, plumbing, and lighting upgrades for efficiency.' },
+            { title: 'Supplementary', desc: 'FF&E installation, painting programs, brand compliance.' }
           ].map((item, index) => (
             <motion.div
               className="card"
@@ -271,7 +294,6 @@ function Home() {
 
       <hr className="hr-slim" />
 
-      {/* Partners */}
       <section id="partners" className="partners">
         <div className="partners-inner">
           <h3>Our Partners</h3>
@@ -285,7 +307,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer / Contact */}
       <footer id="contact" className="footer">
         <div className="footer-container">
           <div className="footer-left">
@@ -313,8 +334,10 @@ function Home() {
   );
 }
 
-/* ---------------- Projects Index ---------------- */
+/* ---------------- Projects Index (LIST WITH ICONS) ---------------- */
 function ProjectsIndex() {
+  const items = projectsData;
+
   return (
     <div className="projects-wrapper">
       <header className="projects-hero">
@@ -323,39 +346,45 @@ function ProjectsIndex() {
             Projects
           </motion.h2>
           <motion.p initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: .05, duration: .3 }}>
-            Selected hotel renovations across brands. Click a property to see more.
+            Select a brand to view work.
           </motion.p>
         </div>
       </header>
 
-      <section className="hotel-grid">
-        {projectsData.map((p, i) => (
-          <motion.article
-            key={p.slug}
-            className="hotel-card"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.28, ease: 'easeOut', delay: i * 0.05 }}
-          >
-            <Link to={`/projects/${p.slug}`} aria-label={`Open ${p.name}`}>
-              <div className="hotel-card-media">
-                <img src={p.cover} alt={`${p.name} cover`} loading="lazy" />
-                <div className="hotel-card-sheen" />
-              </div>
-              <div className="hotel-card-body">
-                <img className="hotel-brand" src={p.brandLogo} alt={`${p.name} logo`} />
-                <h3>{p.name}</h3>
-                <p>{p.short}</p>
-                {p.comingSoon && <span className="coming-badge">More coming soon</span>}
-              </div>
-            </Link>
-          </motion.article>
-        ))}
-      </section>
+      <ul className="hotel-list" role="list">
+        {items.map((p, i) => {
+          const content = (
+            <>
+              <img className="hotel-list-logo" src={p.brandLogo} alt={`${p.name} logo`} />
+              <span className="hotel-list-name">{p.name}</span>
+              {p.comingSoon && <span className="hotel-list-badge">Coming soon</span>}
+            </>
+          );
 
+          return (
+            <motion.li
+              key={p.slug}
+              className={`hotel-list-item ${p.comingSoon ? 'disabled' : ''}`}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.25, ease: 'easeOut', delay: i * 0.03 }}
+            >
+              {p.comingSoon ? (
+                <button className="hotel-list-button" type="button" disabled aria-disabled="true" title="Coming soon">
+                  {content}
+                </button>
+              ) : (
+                <Link className="hotel-list-link" to={`/projects/${p.slug}`} aria-label={`Open ${p.name}`}>
+                  {content}
+                </Link>
+              )}
+            </motion.li>
+          );
+        })}
+      </ul>
 
-     <footer id="contact" className="footer">
+      <footer id="contact" className="footer">
         <div className="footers-container">
           <div className="footer-left">
             <h2 className="footer-title">NGM Limited</h2>
@@ -378,21 +407,122 @@ function ProjectsIndex() {
           <p>© {new Date().getFullYear()} NGM Limited — All Rights Reserved</p>
         </div>
       </footer>
-
-
     </div>
-
-  
   );
 }
 
-/* ---------------- Project Detail ---------------- */
+/* ---------------- Project Detail (brand hub + sub-gallery) ---------------- */
 function ProjectDetail() {
-  const { slug } = useParams();
+  const { slug, subId } = useParams();
   const project = projectsData.find((p) => p.slug === slug);
-  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '' });
 
   if (!project) return <Navigate to="/projects" replace />;
+
+  // Coming soon brands => friendly placeholder
+  if (project.comingSoon) {
+    return (
+      <div className="projects-wrapper">
+        <header className="projects-hero">
+          <div className="projects-hero-inner">
+            <motion.h2 initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .3 }}>
+              {project.name}
+            </motion.h2>
+            <p>More details for this brand are coming soon.</p>
+            <div className="breadcrumbs">
+              <NavLink to="/" className="crumb">Home</NavLink>
+              <span className="crumb-sep">/</span>
+              <NavLink to="/projects" className="crumb">Projects</NavLink>
+              <span className="crumb-sep">/</span>
+              <span className="crumb current">{project.name}</span>
+            </div>
+          </div>
+        </header>
+
+        <div className="projects-footer-nav">
+          <NavLink to="/projects" className="footer-link">← Back to Projects</NavLink>
+        </div>
+      </div>
+    );
+  }
+
+  const hasSubprojects = Array.isArray(project.subprojects) && project.subprojects.length > 0;
+  const selectedSub = hasSubprojects
+    ? project.subprojects.find((sp) => sp.id === subId) || null
+    : null;
+
+  // If subId exists but doesn't match any subproject, return to brand hub
+  if (hasSubprojects && subId && !selectedSub) {
+    return <Navigate to={`/projects/${slug}`} replace />;
+  }
+
+  // BRAND HUB (tiles) — when there are subprojects and no subId
+  if (hasSubprojects && !subId) {
+    return (
+      <div className="projects-wrapper">
+        <header className="projects-hero">
+          <div className="projects-hero-inner">
+            {project.brandLogo && (
+              <motion.img
+                className="brand-badge"
+                src={project.brandLogo}
+                alt={project.name}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25 }}
+              />
+            )}
+            <motion.h2 initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .3 }}>
+              {project.name} — Projects
+            </motion.h2>
+            <motion.p initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: .05, duration: .3 }}>
+              {project.short}
+            </motion.p>
+
+            <div className="breadcrumbs">
+              <NavLink to="/" className="crumb">Home</NavLink>
+              <span className="crumb-sep">/</span>
+              <NavLink to="/projects" className="crumb">Projects</NavLink>
+              <span className="crumb-sep">/</span>
+              <span className="crumb current">{project.name}</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Subproject tiles */}
+        <section className="subgrid">
+          {project.subprojects.map((sp, i) => (
+            <motion.article
+              key={sp.id}
+              className="subcard"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.28, ease: 'easeOut', delay: i * 0.04 }}
+            >
+              <Link to={`/projects/${slug}/${sp.id}`} className="subcard-link" aria-label={`Open ${sp.name}`}>
+                <div className="subcard-media">
+                  <img src={sp.cover} alt={`${sp.name} cover`} loading="lazy" />
+                  <div className="subcard-sheen" />
+                </div>
+                <div className="subcard-body">
+                  <h3>{sp.name}</h3>
+                  <p>Click to view gallery</p>
+                </div>
+              </Link>
+            </motion.article>
+          ))}
+        </section>
+
+        <div className="projects-footer-nav">
+          <NavLink to="/projects" className="footer-link">← Back to Projects</NavLink>
+        </div>
+      </div>
+    );
+  }
+
+  // SUB-GALLERY: show images for the selected subproject
+  const imagesToShow = selectedSub?.images || [];
+  const [lightbox, setLightbox] = useState({ open: false, src: '', alt: '' });
 
   return (
     <div className="projects-wrapper">
@@ -409,7 +539,7 @@ function ProjectDetail() {
             />
           )}
           <motion.h2 initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .3 }}>
-            {project.name} — Selected Renovations
+            {project.name} — {selectedSub?.name}
           </motion.h2>
           <motion.p initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: .05, duration: .3 }}>
             {project.short}
@@ -420,31 +550,43 @@ function ProjectDetail() {
             <span className="crumb-sep">/</span>
             <NavLink to="/projects" className="crumb">Projects</NavLink>
             <span className="crumb-sep">/</span>
-            <span className="crumb current">{project.name}</span>
+            <NavLink to={`/projects/${slug}`} className="crumb">{project.name}</NavLink>
+            <span className="crumb-sep">/</span>
+            <span className="crumb current">{selectedSub?.name}</span>
           </div>
         </div>
       </header>
 
+      <div className="projects-footer-nav" style={{ marginTop: '-0.75rem' }}>
+        <NavLink to={`/projects/${slug}`} className="footer-link">← All {project.name} projects</NavLink>
+      </div>
+
       {/* Gallery */}
       <section className="gallery-grid">
-        {project.images?.map((img, i) => (
+        {imagesToShow.map((img, i) => (
           <motion.figure
             key={i}
             className="gallery-card"
-            onClick={() => setLightbox({ open: true, src: img.src, alt: img.alt })}
+            onClick={() => setLightbox({ open: true, src: img.src, alt: img.alt || project.name })}
             title="Click to enlarge"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.25, ease: 'easeOut', delay: i * 0.03 }}
           >
-            <img src={img.src} alt={img.alt} loading="lazy" />
+            <img src={img.src} alt={img.alt || `${project.name} image ${i + 1}`} loading="lazy" />
             <figcaption>
-              <span className="tag">{img.tag}</span>
-              <span className="caption">{img.alt}</span>
+              {img.tag && <span className="tag">{img.tag}</span>}
+              {img.alt && <span className="caption">{img.alt}</span>}
             </figcaption>
           </motion.figure>
         ))}
+
+        {imagesToShow.length === 0 && (
+          <div style={{ textAlign: 'center', opacity: 0.7, padding: '1rem' }}>
+            No images found for this project yet.
+          </div>
+        )}
       </section>
 
       {/* Lightbox */}
@@ -488,7 +630,8 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="projects" element={<ProjectsIndex />} />
-        <Route path="projects/:slug" element={<ProjectDetail />} />
+        {/* Optional subId keeps deep-links simple and reliable */}
+        <Route path="projects/:slug/:subId?" element={<ProjectDetail />} />
       </Route>
     </Routes>
   );
