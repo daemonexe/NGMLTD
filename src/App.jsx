@@ -181,7 +181,7 @@ function Layout() {
 function Home() {
   const navigate = useNavigate();
   const heroImageUrl =
-    'https://github.com/daemonexe/daemonexe/blob/main/home_image.jpg?raw=true';
+    'https://github.com/daemonexe/Password-Manager/blob/main/77.jpg?raw=true';
 
   return (
     <>
