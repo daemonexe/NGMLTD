@@ -342,3 +342,155 @@ main { display: block; }
   .hero-overlay {padding: -10px;}
   .nav-links.active { box-shadow: 0 18px 40px rgba(0,0,0,0.85); }
 }
+
+/* Simple vertical list for Projects */
+.hotel-list { 
+  max-width: 720px; 
+  margin: 2rem auto; 
+  padding: 0; 
+  list-style: none;
+}
+.hotel-list-item { 
+  background: rgba(255,255,255,0.04); 
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; 
+  padding: 14px 16px; 
+  margin-bottom: 12px; 
+  transition: transform .15s ease, background .2s ease;
+}
+.hotel-list-link, .hotel-list-button {
+  display: flex; align-items: center; gap: 12px; 
+  width: 100%; text-decoration: none; color: inherit;
+  background: transparent; border: 0; text-align: left; padding: 0; cursor: pointer;
+}
+.hotel-list-item:hover:not(.disabled) { transform: translateY(-2px); background: rgba(255,255,255,0.06); }
+.hotel-list-logo { height: 28px; width: auto; object-fit: contain; }
+.hotel-list-name { font-weight: 600; font-size: 1.05rem; }
+.hotel-list-badge {
+  margin-left: auto; font-size: .85rem; opacity: .8;
+  border: 1px dashed rgba(255,255,255,.25); padding: 4px 8px; border-radius: 999px;
+}
+.hotel-list-item.disabled { opacity: .6; }
+.hotel-list-item.disabled .hotel-list-button { cursor: not-allowed; }
+
+/* Projects list */
+.hotel-list { 
+  max-width: 720px; 
+  margin: 2rem auto; 
+  padding: 0; 
+  list-style: none;
+}
+.hotel-list-item { 
+  background: rgba(255,255,255,0.04); 
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; 
+  padding: 14px 16px; 
+  margin-bottom: 12px; 
+  transition: transform .15s ease, background .2s ease;
+}
+.hotel-list-link, .hotel-list-button {
+  display: flex; align-items: center; gap: 12px; 
+  width: 100%; text-decoration: none; color: inherit;
+  background: transparent; border: 0; text-align: left; padding: 0; cursor: pointer;
+}
+.hotel-list-item:hover:not(.disabled) { transform: translateY(-2px); background: rgba(255,255,255,0.06); }
+.hotel-list-logo { height: 28px; width: auto; object-fit: contain; }
+.hotel-list-name { font-weight: 600; font-size: 1.05rem; }
+.hotel-list-badge {
+  margin-left: auto; font-size: .85rem; opacity: .8;
+  border: 1px dashed rgba(255,255,255,.25); padding: 4px 8px; border-radius: 999px;
+}
+.hotel-list-item.disabled { opacity: .6; }
+.hotel-list-item.disabled .hotel-list-button { cursor: not-allowed; }
+
+/* Sub-gallery tabs */
+.subgallery-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem auto 1.25rem;
+}
+.subgallery-tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.subgallery-tab:hover { transform: translateY(-1px); }
+.subgallery-tab.active {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.28);
+}
+
+/* Subproject tile grid */
+.subgrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  max-width: 1100px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+}
+
+.subcard {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.subcard:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+}
+
+.subcard-link { display: block; color: inherit; text-decoration: none; }
+
+.subcard-media {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.subcard-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.subcard-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35));
+  pointer-events: none;
+}
+
+.subcard-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.subcard-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subcard-body p {
+  margin: 0;
+  opacity: .8;
+  font-size: .9rem;
+}
+
+/* (Keep the list/tabs/lightbox styles from before) */
