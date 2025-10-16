@@ -44,26 +44,20 @@ const projectsData = [
       // { id: 'project-2', name: 'Project 2', cover: '...', images: [...] }
     ],
   },
-  {
-    slug: 'marriott',
-    name: 'Marriott',
+
+    {
+    slug: 'best-western-inn',
+    name: 'Best Western Plus',
     brandLogo:
-      'https://purepng.com/public/uploads/large/purepng.com-marriott-logologobrand-logoiconslogos-251519940649oyste.png',
+      'https://www.bestwestern.com/content/dam/best-western/brand/brand-logos/best-western-plus-horizontal-logo-rgb.png', // swap for real logo URL when ready
     cover:
-      'https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1600',
-    short: 'FF&E installation, lobby millwork, and corridor refurbishment.',
+      'https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?q=80&w=1600',
+    short: 'Corridor, lobby, and FF&E upgrades.',
     comingSoon: true,
   },
-  {
-    slug: 'hampton-by-hilton',
-    name: 'Hampton by Hilton',
-    brandLogo:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hampton_by_Hilton_logo.svg/2560px-Hampton_by_Hilton_logo.svg.png',
-    cover:
-      'https://images.unsplash.com/photo-1522706604294-57b121d3b36f?q=80&w=1600',
-    short: 'Guestroom refresh program with lighting and finishes.',
-    comingSoon: true,
-  },
+
+
+
   {
     slug: 'holiday-inn',
     name: 'Holiday Inn',
@@ -85,16 +79,40 @@ const projectsData = [
     short: 'Public spaces and guestroom refresh program.',
     comingSoon: true,
   },
+
   {
-    slug: 'best-western-inn',
-    name: 'Best Western Inn',
+    slug: 'quality-inn',
+    name: 'Quality Inn',
     brandLogo:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Best_Western_logo.svg/851px-Best_Western_logo.svg.png?20190814072338', // swap for real logo URL when ready
+      'https://media.choicehotels.com/download/Quality_W+Endorsement_Chiclet_RGB.jpg', // swap for real logo URL when ready
     cover:
       'https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?q=80&w=1600',
     short: 'Corridor, lobby, and FF&E upgrades.',
     comingSoon: true,
   },
+
+  {
+    slug: 'marriott',
+    name: 'Marriott',
+    brandLogo:
+      'https://purepng.com/public/uploads/large/purepng.com-marriott-logologobrand-logoiconslogos-251519940649oyste.png',
+    cover:
+      'https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1600',
+    short: 'FF&E installation, lobby millwork, and corridor refurbishment.',
+    comingSoon: true,
+  },
+
+  {
+    slug: 'hampton-by-hilton',
+    name: 'Hampton by Hilton',
+    brandLogo:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hampton_by_Hilton_logo.svg/2560px-Hampton_by_Hilton_logo.svg.png',
+    cover:
+      'https://images.unsplash.com/photo-1522706604294-57b121d3b36f?q=80&w=1600',
+    short: 'Guestroom refresh program with lighting and finishes.',
+    comingSoon: true,
+  },
+
 ];
 
 /* ---------------- Navbar (shared) ---------------- */
