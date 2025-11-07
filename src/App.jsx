@@ -314,7 +314,7 @@ function Home() {
 
       <section id="partners" className="partners">
         <div className="partners-inner">
-          <h3>Our Partners</h3>
+          <h3>Our Clients</h3>
           <div className="partner-logos">
             <a><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST9XNQRosaxIwySlkdKsOGBFOt0WHTMvhIfw&s" alt="Partner 1" /></a>
             <a><img src="https://purepng.com/public/uploads/large/purepng.com-marriott-logologobrand-logoiconslogos-251519940649oyste.png" alt="Partner 2" /></a>
